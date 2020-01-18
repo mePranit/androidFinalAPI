@@ -2,18 +2,18 @@ const express = require('express');
 const router = new express.Router() 
 
 //require('./db/mongoose')
-const users = require('../Models/users') 
+const shows = require('../Models/shows') 
 
 
 
 
 //request for register/signup for users
 
-router.post('/registeruser', function(req, res){   
+router.post('/registershow', function(req, res){   
 console.log(req.body);
-const mydata = new users(req.body)
+const mydata = new shows(req.body)
 mydata.save().then(function(){
-res.send('register sucessful')
+res.send('show register sucessful')
 }).catch(function(e){
 res.send(e)
 
@@ -23,8 +23,8 @@ res.send(e)
 //request for getting user information
 
 
-router.get('/userinfo/:userid', function(req, res){
-    users.find(req.params.id).then(function(user_data){
+router.get('/showinfo/:showid', function(req, res){
+    shows.find(req.params.showid).then(function(user_data){
 
         //this line writes on postman
     res.send(user_data);
@@ -40,20 +40,20 @@ router.get('/userinfo/:userid', function(req, res){
     
     //request to update user
     
-    router.put('/updateuser/:userid', function(req, res){
+    router.put('/updateshow/:showid', function(req, res){
         //console.log("dsfadf");
-        users.findOneAndUpdate({_id :req.params.userid}, req.body).then(function(){
-            res.send("updated")
+        shows.findOneAndUpdate({_id :req.params.showid}, req.body).then(function(){
+            res.send("show updated")
         }).catch(function(){ 
             res.send("error")
         }) 
         })
 
 
-router.delete('/deleteuser/:userid', function(req, res){
-    console.log(req.params.id);
-    users.findByIdAndDelete(req.params.userid).then(function(){
-        res.send("deleted")
+router.delete('/deleteshow/:showid', function(req, res){
+    console.log(req.params.showid);
+    shows.findByIdAndDelete(req.params.showid).then(function(){
+        res.send("show deleted")
     }).catch(function(){ 
         res.send(e)
     })

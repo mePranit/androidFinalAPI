@@ -17,5 +17,9 @@ const userRouter = require('./Routers/users')
 app.use(userRouter)
 
 
+const showRouter = require('./Routers/shows')
+app.use(showRouter)
+
+
 app.listen(3000, function(){
 });
