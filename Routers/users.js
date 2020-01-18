@@ -23,20 +23,6 @@ res.send(e)
 //request for getting user information
 
 
-router.get('/userinfo/:userid', function(req, res){
-    users.find(req.params.id).then(function(user_data){
-
-        //this line writes on postman
-    res.send(user_data);
-   // console.log(req.body)
-   // res.send("data selected")
-    //console.log(user_data)
-    }).catch(function(e){
-        res.send("error")
-    });
-    })
-    
-
     
     //request to update user
     
@@ -51,7 +37,7 @@ router.get('/userinfo/:userid', function(req, res){
 
 
 router.delete('/deleteuser/:userid', function(req, res){
-    console.log(req.params.id);
+    console.log(req.params.userid);
     users.findByIdAndDelete(req.params.userid).then(function(){
         res.send("deleted")
     }).catch(function(){ 
@@ -61,6 +47,19 @@ router.delete('/deleteuser/:userid', function(req, res){
     
     
    
+router.get('/selectuser/:userid', function(req, res){
+    users.findById(req.params.userid).then(function(user_data){
+        //this line writes on postman
+    res.send(user_data);
+    console.log(req.body)
+    res.send("data selected")
+    //console.log(user_data)
+    }).catch(function(e){
+        res.send("error")
+    });
+    })
+    
+
 
 
 module.exports = router 

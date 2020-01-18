@@ -19,22 +19,6 @@ res.send(e)
 
 }) 
 }) 
-
-//request for getting user information
-
-
-router.get('/showinfo/:showid', function(req, res){
-    shows.find(req.params.showid).then(function(user_data){
-
-        //this line writes on postman
-    res.send(user_data);
-   // console.log(req.body)
-   // res.send("data selected")
-    //console.log(user_data)
-    }).catch(function(e){
-        res.send("error")
-    });
-    })
     
 
     
@@ -60,6 +44,21 @@ router.delete('/deleteshow/:showid', function(req, res){
     })
     
     
+    //request for getting user information
+
+
+router.get('/selectshow/:showid', function(req, res){
+    shows.findById(req.params.showid).then(function(user_data){
+
+        //this line writes on postman
+    res.send(user_data);
+    console.log(req.body)
+    res.send("data selected")
+    console.log(user_data)
+    }).catch(function(e){
+        res.send("error")
+    });
+    })
    
 
 
