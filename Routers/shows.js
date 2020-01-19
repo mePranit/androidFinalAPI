@@ -5,8 +5,6 @@ const router = new express.Router()
 const shows = require('../Models/shows') 
 
 
-
-
 //request for register/signup for users
 
 router.post('/registershow', function(req, res){   
@@ -54,12 +52,27 @@ router.get('/selectshow/:showid', function(req, res){
     res.send(user_data);
     console.log(req.body)
     res.send("data selected")
-    console.log(user_data)
+    //console.log(user_data)
     }).catch(function(e){
         res.send("error")
     });
     })
    
+
+    router.get('/selectallshow/', function(req, res){
+        shows.find().then(function(user_data){
+    
+            //this line writes on postman
+        res.send(user_data);
+        console.log(req.body)
+        res.send("all data selected")
+        //console.log(user_data)
+        }).catch(function(e){
+            res.send("error")
+        });
+        })
+       
+    
 
 
 module.exports = router 
