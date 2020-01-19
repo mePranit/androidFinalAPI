@@ -17,6 +17,10 @@ const shows = mongoose.model('shows', {
     date:{
         type:Date
     },
+    duration:
+    {
+        hours:Number
+    }
 })
 
 
