@@ -1,5 +1,7 @@
 const express = require('express');
 const router = new express.Router() 
+const Auth = require('../Middleware/auth')
+const multer = require('multer');
 
 //require('./db/mongoose')
 const users = require('../Models/users') 
@@ -69,11 +71,14 @@ router.get('/selectuser/:userid', function(req, res){
             res.json({
                 token:token,
                 _id:user._id
-            });
+            }); 
         }
         else{
             res.json({message:"Invalid"});
         }
         })
+
+        
+
 
 module.exports = router 
