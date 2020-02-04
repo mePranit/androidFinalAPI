@@ -14,12 +14,12 @@ const shows = mongoose.model('shows', {
     ticketrate:{
         type:Number
     },
-    date:{
-        type:Date
-    },
     duration:
     {
-        hours:Number
+        type:Number
+    },
+    date:{
+        type:Date
     }
 })
 

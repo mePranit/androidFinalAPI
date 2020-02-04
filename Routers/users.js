@@ -16,9 +16,9 @@ mydata.save().then(function(){
 res.send('register sucessful')
 }).catch(function(e){
 res.send(e)
+})
+})
 
-}) 
-}) 
 
 //request for getting user information
 
@@ -44,8 +44,6 @@ router.delete('/deleteuser/:userid', function(req, res){
         res.send(e)
     })
     })
-    
-    
    
 router.get('/selectuser/:userid', function(req, res){
     users.findById(req.params.userid).then(function(user_data){
@@ -59,9 +57,27 @@ router.get('/selectuser/:userid', function(req, res){
     });
     })
 
-        
-    
-
-
+    router.post("/login",async function (req,res)
+        {
+            
+            var enteredUname=req.body.Username;
+            var enteredpass=req.body.Password;
+            console.log(enteredUname, enteredpass);
+            const user=await users.checkCredentialsDb(enteredUname,enteredpass);
+            if(user){
+            const token=await user.generateAuthToken();
+            res.json({
+                token:token,
+                Username:enteredUname,
+                Password:enteredpass,
+                _id:user._id,
+                user:user.Username,
+                userType:user.Usertype
+            });
+        }
+        else{
+            res.json({message:"Invalid"});
+        }
+        })
 
 module.exports = router 

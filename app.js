@@ -1,11 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 require('./Database/mongoose')
+const jwt = require('jsonwebtoken')
 const cors = require('cors')
-
+const middleware = require('./Middleware/middleware');
+const auth = require('./Middleware/auth');
 
 //require('./db/mongoose')
-const users = require('./Models/users') 
 
 const app = express();
 app.use(cors());
@@ -20,10 +21,11 @@ app.use(userRouter)
 const showRouter = require('./Routers/shows')
 app.use(showRouter)
 
+
 //const ticketReserved = require('./Routers/ticketreserved')
 //app.use(ticketReserved)
 
 
 
-app.listen(3000, function(){
+app.listen(5000, function(){
 });
