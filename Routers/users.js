@@ -60,19 +60,15 @@ router.get('/selectuser/:userid', function(req, res){
     router.post("/login",async function (req,res)
         {
             
-            var enteredUname=req.body.Username;
-            var enteredpass=req.body.Password;
+            var enteredUname=req.body.username;
+            var enteredpass=req.body.password;
             console.log(enteredUname, enteredpass);
             const user=await users.checkCredentialsDb(enteredUname,enteredpass);
             if(user){
             const token=await user.generateAuthToken();
             res.json({
                 token:token,
-                Username:enteredUname,
-                Password:enteredpass,
-                _id:user._id,
-                user:user.Username,
-                userType:user.Usertype
+                _id:user._id
             });
         }
         else{

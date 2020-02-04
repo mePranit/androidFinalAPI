@@ -42,7 +42,7 @@ const users=mongoose.Schema({
 users.statics.checkCredentialsDb=async(Username,Password)=>
 {
   
-    const user1=await User.findOne({Username:Username,Password:Password})
+    const user1=await User.findOne({username:Username,password:Password})
     if(user1){
                 console.log(user1);
                 return user1;
