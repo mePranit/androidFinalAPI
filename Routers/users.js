@@ -15,7 +15,7 @@ router.post('/registeruser', function(req, res){
 console.log(req.body);
 const mydata = new users(req.body)
 mydata.save().then(function(){
-res.send('register sucessful')
+res.send('Registration sucessful!')
 }).catch(function(e){
 res.send(e)
 })
@@ -64,18 +64,25 @@ router.get('/selectuser/:userid', function(req, res){
             
             var enteredUname=req.body.username;
             var enteredpass=req.body.password;
-            console.log(enteredUname, enteredpass);
+            // console.log(enteredUname, enteredpass);
             const user=await users.checkCredentialsDb(enteredUname,enteredpass);
             if(user){
-            const token=await user.generateAuthToken();
-            res.json({
-                token:token,
-                _id:user._id
-            }); 
-        }
-        else{
-            res.json({message:"Invalid"});
-        }
+                const token=await user.generateAuthToken();
+                res.json({
+                    token:token,
+                    _id:user._id,
+                    status:"ok",
+                    username: user.username,
+                    password:user.password,
+                    gmail:user.gmail
+                }); 
+            }
+            else{
+                res.json({
+                    message:"Invalid credentials! Are you registered yet?",
+                    status : "error"
+                });
+            }
         })
 
         

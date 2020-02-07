@@ -48,7 +48,7 @@ users.statics.checkCredentialsDb=async(Username,Password)=>
                 return user1;
     }
     else{
-console.log("not found")
+// console.log("not found")
 return;
     }
 
@@ -56,12 +56,12 @@ return;
 
 users.methods.generateAuthToken=async function(){
     
-    console.log("token");
+    // console.log("token");
   
     const user=this
     const token=jwt.sign({ _id:user._id.toString()},'thisismynewcourse')
     
-    console.log(token);
+    // console.log(token);
     user.tokens=user.tokens.concat({token:token})
     await user.save()
     return token
