@@ -11,7 +11,7 @@ router.post('/registershow', function(req, res){
 console.log(req.body);
 const mydata = new shows(req.body)
 mydata.save().then(function(){
-res.send('show register sucessful')
+res.send('Show registration sucessful.')
 }).catch(function(e){
 res.send(e)
 
@@ -25,7 +25,7 @@ res.send(e)
     router.put('/updateshow/:showid', function(req, res){
         //console.log("dsfadf");
         shows.findOneAndUpdate({_id :req.params.showid}, req.body).then(function(){
-            res.send("show updated")
+            res.send("Show Updated")
         }).catch(function(){ 
             res.send("error")
         }) 
@@ -35,7 +35,7 @@ res.send(e)
 router.delete('/deleteshow/:showid', function(req, res){
     console.log(req.params.showid);
     shows.findByIdAndDelete(req.params.showid).then(function(){
-        res.send("show deleted")
+        res.send("Show deleted.")
     }).catch(function(){ 
         res.send(e)
     })
@@ -64,8 +64,8 @@ router.get('/selectshow/:showid', function(req, res){
     
             //this line writes on postman
         res.send(user_data);
-        console.log(req.body)
-        res.send("all data selected")
+        // console.log(req.body)
+        // res.send("all data selected")
         //console.log(user_data)
         }).catch(function(e){
             res.send("error")

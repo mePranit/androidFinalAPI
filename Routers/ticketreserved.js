@@ -8,13 +8,12 @@ const ticketreserved = require('../Models/ticketreserved')
 //request for register/signup for users
 
 router.post('/reserveticket', function(req, res){   
-console.log(req.body);
+// console.log(req.body);
 const mydata = new ticketreserved(req.body)
 mydata.save().then(function(){
-res.send('ticketreserved')
+res.send('Ticket reserved.')
 }).catch(function(e){
 res.send(e)
-
 }) 
 }) 
     
@@ -25,7 +24,7 @@ res.send(e)
     router.put('/updatereservedticket/:id', function(req, res){
         //console.log("dsfadf");
         ticketreserved.findOneAndUpdate({_id :req.params.id}, req.body).then(function(){
-            res.send("ticketreserved updated")
+            res.send("Ticket updated.")
         }).catch(function(){ 
             res.send("error")
         }) 
@@ -33,9 +32,9 @@ res.send(e)
 
 
 router.delete('/deleteticketreserved/:id', function(req, res){
-    console.log(req.params.id);
+    // console.log(req.params.id);
     ticketreserved.findByIdAndDelete(req.params.id).then(function(){
-        res.send("ticketreserved deleted")
+        res.send("The ticket has been canceled.")
     }).catch(function(){ 
         res.send(e)
     })
@@ -50,8 +49,8 @@ router.get('/selectticketreserved/:id', function(req, res){
 
         //this line writes on postman
     res.send(user_data);
-    console.log(req.body)
-    res.send("data selected")
+    // console.log(req.body)
+    // res.send("data selected")
     //console.log(user_data)
     }).catch(function(e){
         res.send("error")
@@ -64,10 +63,11 @@ router.get('/selectticketreserved/:id', function(req, res){
     
             //this line writes on postman
         res.send(user_data);
-        console.log(req.body)
-        res.send("all data selected")
+        // console.log(req.body)
+        // res.send("all data selected")
         //console.log(user_data)
-        }).catch(function(e){
+        })
+        .catch(function(e){
             res.send("error")
         });
         })

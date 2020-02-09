@@ -21,11 +21,8 @@ app.use(userRouter)
 const showRouter = require('./Routers/shows')
 app.use(showRouter)
 
-
-//const ticketReserved = require('./Routers/ticketreserved')
-//app.use(ticketReserved)
-
-
+const ticketReserved = require('./Routers/ticketreserved')
+app.use(ticketReserved)
 
 app.listen(5000, function(){
 });
