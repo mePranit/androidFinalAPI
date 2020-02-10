@@ -57,6 +57,14 @@ router.get('/selectshow/:showid', function(req, res){
         res.send("error")
     });
     })
+
+    router.get('/searchshow/:searchKeyword', function(req, res){
+        const keyword = req.params.searchKeyword.toLowerCase();
+        shows.find( {$or: [{ location : keyword}, {performer : keyword } ]} ,function(err,user_data){
+        res.send(user_data);
+        console.log(user_data)
+        })
+    })
    
 
     router.get('/selectallshow/', function(req, res){
